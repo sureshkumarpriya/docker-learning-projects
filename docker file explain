@@ -1,0 +1,31 @@
+A Dockerfile is a text blueprint containing a sequence of instructions used by the Docker builder to assemble a container image. By convention, instructions are written in UPPERCASE and are followed by their arguments.
+The table below covers the most common Dockerfile instructions, their primary purposes, and standard syntax structures:
+
+Core Dockerfile Instructions Reference
+
+
+Instruction	Purpose	Common Syntax Example
+FROM	Sets the base image for subsequent instructions. Must be the first command.	FROM ubuntu:22.04
+WORKDIR	Sets the working directory inside the container for any following commands.	WORKDIR /app
+COPY	Copies files or directories from your host machine into the container filesystem.	COPY . .
+ADD	Similar to COPY, but can also handle remote URLs and unpack compressed files.	ADD archive.tar.gz /tmp/
+RUN	Executes commands during the build process (e.g., installing packages) and creates a new layer.	RUN apt-get update && apt-get install -y curl
+ENV	Sets environment variables that persist both during build and at runtime.	ENV NODE_ENV=production
+ARG	Defines variables that users can pass only at build-time via --build-arg.	ARG VERSION=1.0
+CMD	Specifies the default command to execute when the container starts. Can be overridden.	CMD ["node", "server.js"]
+ENTRYPOINT	Configures a container to run as an executable. Arguments passed at runtime append to it.	ENTRYPOINT ["python3", "app.py"]
+EXPOSE	Documents the network ports that the container listens on at runtime.	EXPOSE 8080
+VOLUME	Creates a mount point for persistent or externally shared data.	VOLUME ["/data"]
+USER	Sets the username or UID to use when running subsequent instructions to avoid root access.	USER node
+HEALTHCHECK	Tells Docker how to test the container to check if it is still working properly.	`HEALTHCHECK CMD curl --fail http://localhost/
+LABEL	Adds custom metadata (tags, maintainer info, versioning) to the image.	LABEL version="1.0"
+
+
+Crucial Concepts to Keep in Mind
+
+• Comments: Any line starting with # is treated as a comment and ignored by the builder.
+• Exec vs. Shell Form: Commands like RUN, CMD, and ENTRYPOINT can be written in two ways:
+	• Exec Form (Preferred): CMD ["executable", "param1"] — does not invoke a command shell, properly passing system signals like SIGTERM.
+	• Shell Form: CMD executable param1 — runs the command as a substring through /bin/sh -c.
+• Layering & Caching: Instructions like RUN, COPY, and ADD create read-only layers. Grouping commands together (e.g., combining multiple RUN statements with &&) keeps the final image size small and utilizes build caching efficiently.
+If you are putting together a specific application environment, let me know what language or framework you are targeting (e.g., Node.js, Python, Java) and I can generate a complete, optimized Dockerfile starter template for you.
