@@ -1,0 +1,35 @@
+Docker fundamental Concepts 
+
+The first step is to understand what Docker is solving. Before diving into Docker commands, you 
+need to understand the problem of "it works on my machine" and how containers solve this
+
+ Understand the WHAT and the WHY? 
+
+What are containers?
+Lightweight, portable packages that include everything needed to run an application
+
+Why do we need containers?
+Solve environment consistency, dependency conflicts, and deployment issues
+
+VMs vs Containers
+
+Virtual Machines (VMs) virtualize hardware, meaning they emulate an entire physical computer. Each VM requires its own complete guest operating system (OS), making them heavy, highly isolated, and slow to boot.
+Containers virtualize the operating system, meaning they share the host computer's OS kernel. They pack only the application code and its specific dependencies, making them ultra-lightweight, lightning-fast, and highly portable
+
+
+2) Understand fundamental Docker concepts 
+
+Docker architecture
+Images, containers, Docker Engine, and how they work together
+
+Container lifecycle
+How containers are created, started, stopped, and removed
+
+Docker Image
+Think of it like a recipe or blueprint. It's a file that has everything needed to run an app - the code, settings, and tools. It's just sitting there, not doing anything yet.
+
+Simple way to remember:
+Image = Recipe (static)
+
+Docker Container
+This is when you actually use the recipe. It's the running version of the image - your app is alive and working. You can have many containers from one image, like making multiple cakes from the same recipe
